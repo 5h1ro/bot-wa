@@ -69,6 +69,21 @@ client.on('message', async (msg) => {
                 console.error('Error:', error.message);
             });
         await chat.sendMessage(resMessage);
+    } else if (msg.body.startsWith("/gojo")) {
+        const message = msg.body.slice(3);
+        const apiUrl = 'http://127.0.0.1:8000/gojo';
+        const chat = await msg.getChat();
+        let resMessage = "Gojo telah terbelah, jadi tidak bisa membalas :(";
+        await axios.post(apiUrl, {
+                message
+            })
+            .then(response => {
+                resMessage = response.data
+            })
+            .catch(error => {
+                console.error('Error:', error.message);
+            });
+        await chat.sendMessage(resMessage);
     }
 });
 
