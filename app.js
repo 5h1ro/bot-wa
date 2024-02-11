@@ -55,12 +55,12 @@ client.on('message', async (msg) => {
             }
         }
     } else if (msg.body.startsWith("/ai")) {
-        const msg = msg.body.slice(3);
+        const message = msg.body.slice(3);
         const apiUrl = 'http://127.0.0.1:8000';
         const chat = await msg.getChat();
         let resMessage = "AI tidak tersedia :(";
         axios.post(apiUrl, {
-                msg
+                message
             })
             .then(response => {
                 resMessage = response.data
