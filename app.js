@@ -39,7 +39,7 @@ client.on('message', async (msg) => {
         await chat.sendMessage("Wahai rakyat jelata IONIA, Raja dan Ratu memanggil kalian", {
             mentions
         });
-    } else {
+    } else if (msg.body === '!buat-stiker-ini') {
         if (msg.hasMedia) {
             const chat = await msg.getChat();
             if (chat.name == "IONIA EMPIRE") {
@@ -53,6 +53,21 @@ client.on('message', async (msg) => {
                 }
             }
         }
+    } else if (msg.body.startsWith("/ai")) {
+        const msg = inputString.slice(3);
+        const apiUrl = 'http://127.0.0.1:8000';
+        const chat = await msg.getChat();
+        let resMessage = "AI tidak tersedia :("
+        axios.post(apiUrl, {
+                msg
+            })
+            .then(response => {
+                resMessage = response
+            })
+            .catch(error => {
+                console.error('Error:', error.message);
+            });
+        await chat.sendMessage(resMessage);
     }
 });
 
