@@ -10,7 +10,7 @@ const client = new Client({
         args: [
             "--no-sandbox",
         ],
-        browserWSEndpoint: "ws://localhost:9337/",
+        browserWSEndpoint: "ws://localhost:9337/?--user-data-dir=/usr/src/app/user-data-dir/ioniabotbrowser",
     },
 });
 
@@ -55,7 +55,7 @@ client.on('message', async (msg) => {
             }
         }
     } else if (msg.body.startsWith("/ai")) {
-        const msg = inputString.slice(3);
+        const msg = msg.body.slice(3);
         const apiUrl = 'http://127.0.0.1:8000';
         const chat = await msg.getChat();
         let resMessage = "AI tidak tersedia :(";
