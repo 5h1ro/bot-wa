@@ -3,6 +3,7 @@ const {
 } = require('whatsapp-web.js');
 const qrcode = require('qrcode-terminal');
 const fs = require('fs');
+const axios = require("axios");
 
 const client = new Client({
     puppeteer: {
@@ -57,12 +58,12 @@ client.on('message', async (msg) => {
         const msg = inputString.slice(3);
         const apiUrl = 'http://127.0.0.1:8000';
         const chat = await msg.getChat();
-        let resMessage = "AI tidak tersedia :("
+        let resMessage = "AI tidak tersedia :(";
         axios.post(apiUrl, {
                 msg
             })
             .then(response => {
-                resMessage = response
+                resMessage = response.data
             })
             .catch(error => {
                 console.error('Error:', error.message);
