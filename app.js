@@ -59,16 +59,16 @@ client.on('message', async (msg) => {
         const apiUrl = 'http://127.0.0.1:8000';
         const chat = await msg.getChat();
         let resMessage = "AI tidak tersedia :(";
-        axios.post(apiUrl, {
+        await axios.post(apiUrl, {
                 message
             })
             .then(response => {
                 resMessage = response.data
-                chat.sendMessage(resMessage);
             })
             .catch(error => {
                 console.error('Error:', error.message);
             });
+        await chat.sendMessage(resMessage);
     }
 });
 
