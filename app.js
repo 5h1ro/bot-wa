@@ -10,7 +10,7 @@ const client = new Client({
         args: [
             "--no-sandbox",
         ],
-        browserWSEndpoint: "ws://localhost:9337/?--user-data-dir=/usr/src/app/user-data-dir/ioniabotbrowser",
+        browserWSEndpoint: "ws://localhost:9337/",
     },
 });
 
