@@ -64,11 +64,11 @@ client.on('message', async (msg) => {
             })
             .then(response => {
                 resMessage = response.data
+                chat.sendMessage(resMessage);
             })
             .catch(error => {
                 console.error('Error:', error.message);
             });
-        await chat.sendMessage(resMessage);
     }
 });
 
