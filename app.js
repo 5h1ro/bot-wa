@@ -10,6 +10,7 @@ const client = new Client({
         args: [
             "--no-sandbox",
         ],
+        browserWSEndpoint: "ws://localhost:9337/",
     },
 });
 
