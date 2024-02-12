@@ -54,11 +54,11 @@ client.on('message', async (msg) => {
                 }
             }
         }
-    } else if (msg.body.startsWith("/ai")) {
+    } else if (msg.body.startsWith("/freya")) {
         const message = msg.body.slice(3);
         const apiUrl = 'http://127.0.0.1:8000';
         const chat = await msg.getChat();
-        let resMessage = "AI tidak tersedia :(";
+        let resMessage = "Freya sedang sibuk, jadi tidak bisa membalasmu :(";
         await axios.post(apiUrl, {
                 message
             })
