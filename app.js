@@ -55,7 +55,7 @@ client.on('message', async (msg) => {
             }
         }
     } else if (msg.body.startsWith("/freya")) {
-        const message = msg.body.slice(3);
+        const message = msg.body.slice(6);
         const apiUrl = 'http://127.0.0.1:8000';
         const chat = await msg.getChat();
         let resMessage = "Freya sedang sibuk, jadi tidak bisa membalasmu :(";
@@ -70,7 +70,7 @@ client.on('message', async (msg) => {
             });
         await chat.sendMessage(resMessage);
     } else if (msg.body.startsWith("/gojo")) {
-        const message = msg.body.slice(3);
+        const message = msg.body.slice(5);
         const apiUrl = 'http://127.0.0.1:8000/gojo';
         const chat = await msg.getChat();
         let resMessage = "Gojo telah terbelah, jadi tidak bisa membalas :(";
@@ -84,6 +84,9 @@ client.on('message', async (msg) => {
                 console.error('Error:', error.message);
             });
         await chat.sendMessage(resMessage);
+    } else if (msg.body === '!ping') {
+        const chat = await msg.getChat();
+        await chat.sendMessage("Hamba disini yang mulia");
     }
 });
 
