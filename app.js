@@ -84,6 +84,21 @@ client.on('message', async (msg) => {
                 console.error('Error:', error.message);
             });
         await chat.sendMessage(resMessage);
+    } else if (msg.body.startsWith("/kobo")) {
+        const message = msg.body.slice(5);
+        const apiUrl = 'http://127.0.0.1:8000/kobo';
+        const chat = await msg.getChat();
+        let resMessage = "Kobo end live :(";
+        await axios.post(apiUrl, {
+                message
+            })
+            .then(response => {
+                resMessage = response.data
+            })
+            .catch(error => {
+                console.error('Error:', error.message);
+            });
+        await chat.sendMessage(resMessage);
     } else if (msg.body === '!ping') {
         const chat = await msg.getChat();
         await chat.sendMessage("Hamba disini yang mulia");

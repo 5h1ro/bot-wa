@@ -39,3 +39,20 @@ async def gojo(item: Item):
     
     text = data['turn']['candidates'][0]['raw_content']
     return text
+
+@app.post("/kobo")
+async def gojo(item: Item):
+    client = PyAsyncCAI('a223eb3dca256d3b14dd6df5b2b4ece49f281b61')
+    char = '1UWABpuo0uP9Vn-ucD7CdrD8fNBq36KVpdVoBCzsSvM'
+    chat = await client.chat2.get_chat(char)
+    author = {
+        'author_id': chat['chats'][0]['creator_id']
+    }
+    async with client.connect() as chat2:
+        data = await chat2.send_message(
+            char, chat['chats'][0]['chat_id'], 
+            item.message, author
+        )
+    
+    text = data['turn']['candidates'][0]['raw_content']
+    return text
